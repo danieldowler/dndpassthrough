@@ -24,7 +24,7 @@ router.get('/races', (req, response) => {
 });
 
 router.get('/races/:id', (req, response) => {
-  fetch(`https://dndpassthrough.herokuapp.com/dnd/races/${req.params.id}`)
+  fetch(`http://www.dnd5eapi.co/api/races/${req.params.id}`)
     .then(res => res.json())
     .then(races => response.json(race))
       .catch(err=> res.status(500).json()
@@ -42,7 +42,7 @@ router.get('/skills', (req, response) => {
 });
 
 router.get('/skills/:id', (req, response) => {
-  fetch(`https://dndpassthrough.herokuapp.com/dnd/skills/${req.params.id}`)
+  fetch(`http://www.dnd5eapi.co/api/skills/${req.params.id}`)
     .then(res => res.json())
     .then(skills => response.json(skill))
       .catch(err=> res.status(500).json()
@@ -60,7 +60,7 @@ router.get('/abilities', (req, response) => {
 });
 
 router.get('/abilities/:id', (req, response) => {
-  fetch(`https://dndpassthrough.herokuapp.com/dnd/abilities/${req.params.id}`)
+  fetch(`http://www.dnd5eapi.co/api/ability-scores/${req.params.id}`)
     .then(res => res.json())
     .then(abilities => response.json(ability))
       .catch(err=> res.status(500).json()
