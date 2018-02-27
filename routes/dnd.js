@@ -9,7 +9,15 @@ router.get('/', function(req, res, next) {
 router.get('/races', (req, response) => {
   fetch('http://www.dnd5eapi.co/api/races')
       .then(res => res.json())
-      .then(races => response.json(races))
+      .then(races =>
+        {
+          races = races.map(race => {
+            return Object.assign({}, race, {
+              url: race.url.replace('http://www.dnd5eapi.co/api/races', 'https://dndpassthrough.herokuapp.com/dnd/races')
+          })
+          })
+          response.json(races)
+        })
       .catch(err=>{
         console.log(err);
         res.status(500).end();
