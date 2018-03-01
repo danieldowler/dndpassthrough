@@ -27,8 +27,8 @@ router.get('/races/:id', (req, response) => {
   fetch(`http://www.dnd5eapi.co/api/races/${req.params.id}`)
     .then(res => res.json())
     .then(races => response.json(races))
-      .catch(err=> res.status(500).json()
- )
+    .catch(err => res.status(500).json()
+    )
 });
 
 router.get('/skills', (req, response) => {
@@ -52,8 +52,8 @@ router.get('/skills/:id', (req, response) => {
   fetch(`http://www.dnd5eapi.co/api/skills/${req.params.id}`)
     .then(res => res.json())
     .then(skills => response.json(skills))
-      .catch(err=> res.status(500).json()
- )
+    .catch(err => res.status(500).json()
+    )
 });
 
 router.get('/abilities', (req, response) => {
@@ -61,12 +61,12 @@ router.get('/abilities', (req, response) => {
     .then(res => res.json())
     .then(races => {
       races = races.results.map(race => {
-    return Object.assign({}, ability, {
-      url: race.url.replace('http://www.dnd5eapi.co/api/ability-scores', 'https://dndpassthrough.herokuapp.com/dnd/abilities')
+        return Object.assign({}, race, {
+          url: race.url.replace('http://www.dnd5eapi.co/api/ability-scores', 'https://dndpassthrough.herokuapp.com/dnd/abilities')
+        })
+      })
+      response.json(races)
     })
-  })
-  response.json(races)
-})
     .catch(err => {
       console.log(err);
       res.status(500).end();
@@ -77,8 +77,8 @@ router.get('/abilities/:id', (req, response) => {
   fetch(`http://www.dnd5eapi.co/api/ability-scores/${req.params.id}`)
     .then(res => res.json())
     .then(abilities => response.json(abilities))
-      .catch(err=> res.status(500).json()
- )
+    .catch(err => res.status(500).json()
+    )
 });
 
 module.exports = router;
