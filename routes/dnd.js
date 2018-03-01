@@ -34,7 +34,14 @@ router.get('/races/:id', (req, response) => {
 router.get('/skills', (req, response) => {
   fetch('http://www.dnd5eapi.co/api/skills')
     .then(res => res.json())
-    .then(skills => response.json(skills))
+    .then(races => {
+      races = races.results.map(race => {
+        return Object.assign({}, race, {
+          url: race.url.replace('http://www.dnd5eapi.co/api/skills', 'https://dndpassthrough.herokuapp.com/dnd/skills')
+        })
+      })
+      response.json(races)
+    })
     .catch(err => {
       console.log(err);
       res.status(500).end();
